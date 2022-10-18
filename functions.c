@@ -54,7 +54,7 @@ int print_s(va_list args)
 int print_percent(va_list args)
 {
 	char *str;
-	
+
 	str = "%";
 
 	if (va_arg(args, int) == *str)
@@ -75,7 +75,7 @@ int print_d(va_list args)
 	unsigned int absolute, aux, countnum, count;
 
 	int n;
-	
+
 	count = 0;
 
 	n = va_arg(args, int);
