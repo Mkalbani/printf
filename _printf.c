@@ -10,39 +10,40 @@
 
 int _printf(const char *format, ...)
 {
-	int i, j;
+	int (*pfunc)(va_list, flags_t *);
+	const char *p;
+	va_list arguments;
+	flags_t flags = {0, 0, 0};
 
-	int (*f)(va_list);
-	
-	va_list list;
+	register int count = 0;
 
-	va_start(list, format);
+	va_start(arguments, format);
 
-	if (format == NULL)
+	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
-
-	i = j = 0;
-	while (format[i] != '\0')
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+	for (p = format; *p; p++)
 	{
-		if (format[i] == '%')
+		if (*p == '%')
 		{
-			if (format[i + 1] == '\0')
-				return (-1);
-			f = get_func(format[i + 1]);
-			if (f == NULL)
-				j += print_nan(format[i], format[i + 1]);
-			else
-				j += f(list);
-			i++;
+			p++;
+			if (*p == '%')
+			{
+				count += _putchar('%');
+			continue;
+			}
+		while (get_flag(*p, &flags))
+			p++;
+		pfunc = get_print(*p);
+		count += (pfunc)
+			? pfunc(arguments, &flags)
+			: _printf("%%%c", *p);
 		}
 		else
-		{
-			_putchar(format[i]);
-			j++;
+		count += _putchar(*p);
 		}
-		i++;
-	}
-
-	va_end(list);
-	return (j);
+		_putchar(-1);
+		va_end(arguments);
+		return (count);
 }
