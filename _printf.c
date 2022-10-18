@@ -11,11 +11,13 @@
 int _printf(const char *format, ...)
 {
 	int i, j;
+
 	int (*f)(va_list);
 	
 	va_list list;
 
-	va_start(list, format);  
+	va_start(list, format);
+
 	if (format == NULL)
 		return (-1);
 
