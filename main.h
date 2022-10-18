@@ -25,10 +25,5 @@ int print_i(va_list args);
 int _putchar(char c);
 int print_percent(va_list args);
 int (*get_func(char x))(va_list args);
-int print_hex(va_list l, flags_t *f);
-int print_hex_big(va_list l, flags_t *f);
-int print_binary(va_list l, flags_t *f);
-int print_octal(va_list l, flags_t *f);
-int _puts(char *str);
-char *convert(unsigned long int num, int base, int lowercase);
+
 #endif
