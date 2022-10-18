@@ -29,5 +29,5 @@ int print_hex_big(va_list l, flags_t *f);
 int print_binary(va_list l, flags_t *f);
 int print_octal(va_list l, flags_t *f);
 int _puts(char *str);
-
+char *convert(unsigned long int num, int base, int lowercase);
 #endif
