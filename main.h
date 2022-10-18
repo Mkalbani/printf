@@ -1,31 +1,27 @@
-#ifndef MAIN_H
-#define MAIN_H
-
+#ifndef our_printf
+#define our_printf
+#include <stdio.h>
 #include <stdarg.h>
-#include <stdlib.h>
 
 /**
- * struct flags - struct containing flags to "turn on"
- * when a flag specifier is passed to _printf()
- * @plus: flag for the '+' character
- * @space: flag for the ' ' character
- * @hash: flag for the '#' character
- */
-typedef struct flags
+* struct specifier - struct specifier
+* @valid: the valid character.
+* @f: the functions associated.
+*
+*/
+
+typedef struct specifier
 {
-    int plus;
-    int space;
-    int hash;
-} flags_t;
+	char *valid;
 
-
-
-
+	int (*f)(va_list);
+} spec;
 int _printf(const char *format, ...);
+int print_c(va_list args);
+int print_s(va_list args);
+int print_d(va_list args);
+int print_i(va_list args);
 int _putchar(char c);
-int (*get_func(char ch))(va_list);
-int print_nan(char ch1, char ch2);
-int (*get_print(char s))(va_list, flags_t *);
-int get_flag(char s, flags_t *f);
-
+int print_percent(va_list args);
+int (*get_func(char x))(va_list args);
 #endif
