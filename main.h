@@ -26,4 +26,6 @@ int _putchar(char c);
 int print_percent(va_list args);
 int (*get_func(char x))(va_list args);
 int print_buf(char *buf, unsigned int nbuf);
+unsigned int handl_buf(char *buf, char c, unsigned int ibuf);
+
 #endif
